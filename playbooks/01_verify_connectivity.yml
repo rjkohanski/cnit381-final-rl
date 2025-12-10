@@ -1,12 +1,8 @@
 ---
-- name: Ensure Ansible can reach all devices.
-  hosts: routers
-  gather_facts: false
+- name: Test connectivity to all hosts
+  hosts: all
+  gather_facts: false # No need to gather facts for a simple ping test
+  
   tasks:
-    - name: Set hostname
-      ansible.netcommon.net_ping:
-      dest: 10.10.10.10
-      
-    - name: Debug hostname configuration result
-      debug:
-        var: hostname_result
+    - name: Ping target hosts
+      ansible.builtin.ping: # <-- FIX: This is the action.
