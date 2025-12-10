@@ -1,13 +1,7 @@
 ---
-- name: Ensure Ansible can reach all devices.
-  hosts: routers
-  gather_facts: false
-  
+- name: Test connectivity to all hosts
+  hosts: all
+  gather_facts: false # No need to gather facts for a simple ping test
   tasks:
-  - name: Ansible Connection Ping Check
-    ansible.builtin.ping: # <-- FIX: This line is now correctly aligned with 'name'
-    register: ping_result
-    
-  - name: Display Ping Results
-    ansible.builtin.debug:
-    var: ping_result
+    - name: Ping target hosts
+      ansible.builtin.ping:
