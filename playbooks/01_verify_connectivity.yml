@@ -4,10 +4,10 @@
   gather_facts: false
   
   tasks:
-    - name: Ansible Connection Ping Check
-      ansible.builtin.ping:
-      register: ping_result
+  - name: Ansible Connection Ping Check
+    ansible.builtin.ping:
+    register: ping_result
       
-    - name: Display Ping Results
-      ansible.builtin.debug:
-      var: ping_result
+  - name: Display Ping Results
+    ansible.builtin.debug:
+    var: ping_result
