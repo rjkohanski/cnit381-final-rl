@@ -1,0 +1,59 @@
+---
+-name Base configuration
+  hosts: all
+  gather_facts: no
+  tasks:
+    -name: Set hostname
+     ios_config:
+       lines:
+         -hostname {{ device_hostname }}
+
+    -name Set login banner
+      ios_config:
+        lines:
+          -banner motd !Do not access unless authorized!
+    
+-name Set R1 interface descriptions
+  hosts: R1
+  gather_facts: no
+  tasks:
+    -name: Set G0/0 description
+      ios_config:
+        lines:
+          -no shutdown
+          -description Connection to SW1
+        parents: GigabitEthernet0/0
+    -name: Set G0/1 description
+      ios_config:
+        lines:
+          -no shutdown
+          -description Connection to R2
+        parents: GigabitEthernet0/1
+
+-name Set R2 interface descriptions
+  hosts: R2
+  gather_facts: no
+  tasks:
+    -name: Set G0/0 description
+      ios_config:
+        lines:
+          -no shutdown
+          -description Connection to R1
+        parents: GigabitEthernet0/0
+
+-name Set SW1 interface descriptions
+  hosts: SW1
+  gather_facts: no
+  tasks:
+    -name: Set Fa0/1 description
+      ios_config:
+        lines:
+          -no shutdown
+          -description Connection to R1
+        parents: FastEthernet0/1
+    -name: Set Fa0/2 description
+      ios_config:
+        lines:
+          -no shutdown
+          -description Access port
+        parents: FastEthernet0/2
