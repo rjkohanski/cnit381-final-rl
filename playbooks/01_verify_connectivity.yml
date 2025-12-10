@@ -5,7 +5,7 @@
   tasks:
     - name: Common Network Ping
       ansible.netcommon.net_ping:
-      dest: all
+        dest: all
       register: ping_result
       
     - name: Display Ping Results
