@@ -2,12 +2,12 @@
 - name: Ensure Ansible can reach all devices.
   hosts: routers
   gather_facts: false
+  
   tasks:
-    - name: Common Network Ping
-      ansible.netcommon.net_ping:
-        dest: all
+    - name: Ansible Connection Ping Check
+      ansible.builtin.ping:
       register: ping_result
       
     - name: Display Ping Results
       ansible.builtin.debug:
-        var: ping_result
+      var: ping_result
