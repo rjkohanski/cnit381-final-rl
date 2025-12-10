@@ -1,0 +1,12 @@
+---
+- name: Ensure Ansible can reach all devices.
+  hosts: routers
+  gather_facts: false
+  tasks:
+    - name: Set hostname
+      ansible.netcommon.net_ping:
+      dest: 10.10.10.10
+      
+    - name: Debug hostname configuration result
+      debug:
+        var: hostname_result
