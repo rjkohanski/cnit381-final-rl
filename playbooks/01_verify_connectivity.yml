@@ -3,10 +3,11 @@
   hosts: routers
   gather_facts: false
   tasks:
-    - name: Set hostname
+    - name: Common Network Ping
       ansible.netcommon.net_ping:
-      dest: 10.10.10.10
+      dest:
+      register: ping_result
       
-    - name: Debug hostname configuration result
-      debug:
-        var: hostname_result
+    - name: Display Ping Results
+      ansible.builtin.debug:
+        var: ping_result
