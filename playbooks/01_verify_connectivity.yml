@@ -1,8 +1,8 @@
 ---
 - name: Test connectivity to all hosts
   hosts: all
-  gather_facts: false # No need to gather facts for a simple ping test
+  gather_facts: false 
   
   tasks:
     - name: Ping target hosts
-      ansible.builtin.ping: # <-- FIX: This is the action.
+      ansible.builtin.ping:
