@@ -5,9 +5,9 @@
   
   tasks:
   - name: Ansible Connection Ping Check
-    ansible.builtin.ping:
+    ansible.builtin.ping: # <-- FIX: This line is now correctly aligned with 'name'
     register: ping_result
-      
+    
   - name: Display Ping Results
     ansible.builtin.debug:
     var: ping_result
