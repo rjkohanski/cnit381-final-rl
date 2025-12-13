@@ -4,7 +4,7 @@
   gather_facts:false
   
   vars:
-    router_ids:
+  router_ids:
       R1: 1
       R2: 2
 
