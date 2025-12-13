@@ -2,6 +2,9 @@
 - name: Test connectivity to all hosts
   hosts: all
   gather_facts: false 
+
+  collections:
+    - cisco.ios
   
   tasks:
     - name: Ping target hosts
