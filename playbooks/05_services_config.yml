@@ -1,11 +1,14 @@
 ---
-- name: Playbook 5 - Services Configuration
+- name: Services Configuration
   hosts: all
-  gather_facts: no
+  gather_facts: false
+
+  collections:
+    - cisco.ios
 
   tasks:
     - name: Configure NTP and Logging Buffer
-      cisco.ios.ios_config:
+      ios_config:
         lines:
-          - ntp server time.google.com
-          - logging buffered 16384
+          - "ntp server time.google.com"
+          - "logging buffered 16384"
