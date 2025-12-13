@@ -50,10 +50,10 @@
         lines:
           -no shutdown
           -description Connection to R1
-        parents: FastEthernet0/1
+        parents: GigabitEthernet0/1
     -name: Set Fa0/2 description
       ios_config:
         lines:
           -no shutdown
           -description Access port
-        parents: FastEthernet0/2
+        parents: GigabitEthernet0/2
