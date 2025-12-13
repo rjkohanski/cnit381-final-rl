@@ -30,36 +30,45 @@
           -no shutdown
           -ip address 192.168.3.1 255.255.255.0
 
-    -name Apply data and voice VLAN to interfaces
+    -name Apply data and voice VLAN to g0/2
       ios_config:
         lines:
-          -interface range g0/2-4
           -switchport mode access
           -switchport access vlan 10
           -switchport voice vlan 30
           -no shutdown
+        parents: GigabitEthernet0/2
+
+    -name Apply data and voice VLAN to g0/3
+      ios_config:
+        lines:
+          -switchport mode access
+          -switchport access vlan 10
+          -switchport voice vlan 30
+          -no shutdown
+        parents: GigabitEthernet0/3
       
     -name Apply server VLAN to interface
       ios_config:
         lines:
-          -interface g0/5
           -switchport mode access
           -switchport access vlan 20
           -no shutdown
+        parents: GigabitEthernet0/4
     
     -name Create trunk interface
       ios_config:
         lines:
-          -interface g0/1
           -switchport mode trunk
           -switchport trunk allowed vlan 10,20,30,100
-          -no shutdown    
+          -no shutdown
+        parents: GigabitEthernet0/1
     
     -name VLAN verification
       ios_command:
         commands:
           -show vlan brief
           -show ip interface brief
-        register: verification_output
+      register: verification_output
       debug:
-       var: verification_output.stdout_lines
+        var: verification_output.stdout_lines
