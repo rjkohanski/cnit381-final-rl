@@ -47,6 +47,14 @@
           -switchport access vlan 20
           -no shutdown
     
+    -name Create trunk interface
+      ios_config:
+        lines:
+          -interface g0/1
+          -switchport mode trunk
+          -switchport trunk allowed vlan 10,20,30,100
+          -no shutdown    
+    
     -name VLAN verification
       ios_command:
         commands:
