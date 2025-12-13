@@ -1,0 +1,40 @@
+---
+-name VLAN configuration
+  hosts: SW1
+  gather_facts: no
+  tasks:
+    -name Create data VLAN
+      ios_config:
+        lines:
+          -vlan 10
+          -name Data 
+          -int vlan 10
+          -no shutdown
+          -ip address 192.168.1.1 255.255.255.0
+    
+    -name Create server VLAN
+      ios_config:
+        lines:
+          -vlan 20
+          -name Data 
+          -int vlan 20
+          -no shutdown
+          -ip address 192.168.2.1 255.255.255.0
+
+    -name Create voice VLAN
+      ios_config:
+        lines:
+          -vlan 30
+          -name Data 
+          -int vlan 30
+          -no shutdown
+          -ip address 192.168.3.1 255.255.255.0
+
+    -name VLAN verification
+      ios_command:
+        commands:
+          -show vlan brief
+          -show ip interface brief
+        register: verification_output
+      debug:
+       var: verification_output.stdout_lines

@@ -1,5 +1,5 @@
 ---
--name Base configuration
+-name Hostname and banner configuration
   hosts: all
   gather_facts: no
   tasks:
