@@ -1,7 +1,7 @@
 ---
 -name: Playbook 3 - EIGRP and Loopback Configuration
   hosts:routers
-  gather_facts: no
+  gather_facts:no
   
   vars:
     router_ids:
