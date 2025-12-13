@@ -1,7 +1,7 @@
 ---
 -name Hostname and banner configuration
   hosts: all
-  gather_facts: no
+  gather_facts:false
   tasks:
     -name: Set hostname
      ios_config:

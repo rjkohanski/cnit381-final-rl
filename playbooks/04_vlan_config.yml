@@ -1,7 +1,7 @@
 ---
 -name VLAN configuration
   hosts: SW1
-  gather_facts: no
+  gather_facts:false
   tasks:
     -name Create data VLAN
       ios_config:
