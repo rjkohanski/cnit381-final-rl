@@ -30,6 +30,23 @@
           -no shutdown
           -ip address 192.168.3.1 255.255.255.0
 
+    -name Apply data and voice VLAN to interfaces
+      ios_config:
+        lines:
+          -interface range g0/2-4
+          -switchport mode access
+          -switchport access vlan 10
+          -switchport voice vlan 30
+          -no shutdown
+      
+    -name Apply server VLAN to interface
+      ios_config:
+        lines:
+          -interface g0/5
+          -switchport mode access
+          -switchport access vlan 20
+          -no shutdown
+    
     -name VLAN verification
       ios_command:
         commands:
