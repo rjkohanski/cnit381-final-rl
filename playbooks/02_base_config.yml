@@ -2,6 +2,8 @@
 -name Hostname and banner configuration
   hosts: all
   gather_facts:false
+  collections:
+    - cisco.ios
   tasks:
     -name: Set hostname
      ios_config:
