@@ -1,1 +1,17 @@
 ---
+-name Backup configuration
+  hosts: all
+  gather_facts: no
+  tasks:
+    -name Show run and save to /backups directory
+      ios_command:
+        commands:
+          -show running-config
+      register: config
+      copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "backups/show_run_{{ device_hostname }}.txt"
+    
+    -name success message
+      debug:
+        msg: "Successfully copied {{ device_hostname }} running-config to /backups directory"
