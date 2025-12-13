@@ -1,5 +1,5 @@
 ---
-- name: Playbook 3 - EIGRP and Loopback Configuration
+-name: Playbook 3 - EIGRP and Loopback Configuration
   hosts: routers
   gather_facts: no
   
