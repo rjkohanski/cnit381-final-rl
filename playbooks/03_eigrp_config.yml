@@ -3,6 +3,9 @@
   hosts: routers
   gather_facts: false
 
+  collections:
+    - cisco.ios
+
   vars:
     router_ids:
       R1: 1
@@ -10,7 +13,7 @@
 
   tasks:
     - name: Create and Configure Loopback
-      cisco.ios.ios_config:
+      ios_config:
         parents: "interface Loopback{{ item }}"
         lines:
           - "ip address 10.{{ router_ids[inventory_hostname] }}.{{ item }}.1 255.255.255.255"
@@ -20,7 +23,7 @@
         - 3
 
     - name: Enable EIGRP AS 100 and Advertise All Networks
-      cisco.ios.ios_config:
+      ios_config:
         parents: "router eigrp 100"
         lines:
           - "network 0.0.0.0"
