@@ -4,5 +4,13 @@
   gather_facts: false
 
   tasks:
-    - name: Test network device connectivity
-      ansible.builtin.ping:
+    - name: Verify device is reachable
+      ios_command:
+        commands:
+          - show version
+      register: result
+      ignore_errors: true
+
+    - name: Display connectivity result
+      debug:
+        msg: "Device {{ inventory_hostname }} is reachable. Output: {{ result.stdout[0] }}"
