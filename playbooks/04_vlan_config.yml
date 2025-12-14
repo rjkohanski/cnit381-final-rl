@@ -16,7 +16,7 @@
 
     - name: Configure SVI for VLAN 10 (Data)
       ios_config:
-        parents: interface Vlan10
+        parents: interface Vlan 10
         lines:
           - ip address 192.168.1.1 255.255.255.0
           - no shutdown
@@ -35,43 +35,43 @@
           - ip address 192.168.3.1 255.255.255.0
           - no shutdown
 
-    - name: Apply data and voice VLANs to G0/3
+    - name: Apply data and voice VLANs to G0/0/3
       ios_config:
-        parents: interface GigabitEthernet0/3
+        parents: interface GigabitEthernet0/0/3
         lines:
           - switchport mode access
           - switchport access vlan 10
           - switchport voice vlan 30
           - no shutdown
 
-    - name: Apply data and voice VLANs to G0/4
+    - name: Apply data and voice VLANs to G0/0/4
       ios_config:
-        parents: interface GigabitEthernet0/4
+        parents: interface GigabitEthernet0/0/4
         lines:
           - switchport mode access
           - switchport access vlan 10
           - switchport voice vlan 30
           - no shutdown
 
-    - name: Apply server VLAN to G0/5
+    - name: Apply server VLAN to G0/0/5
       ios_config:
-        parents: interface GigabitEthernet0/5
+        parents: interface GigabitEthernet0/0/5
         lines:
           - switchport mode access
           - switchport access vlan 20
           - no shutdown
 
-    - name: Configure trunk interface G0/1
+    - name: Configure trunk interface G0/0/1
       ios_config:
-        parents: interface GigabitEthernet0/1
+        parents: interface GigabitEthernet0/0/1
         lines:
           - switchport mode trunk
           - switchport trunk allowed vlan 10,20,30,100
           - no shutdown
 
-    - name: Configure trunk interface G0/2
+    - name: Configure trunk interface G0/0/2
       ios_config:
-        parents: interface GigabitEthernet0/2
+        parents: interface GigabitEthernet0/0/2
         lines:
           - switchport mode trunk
           - switchport trunk allowed vlan 10,20,30,100
