@@ -6,7 +6,7 @@
     - name: Set hostname
       ios_config:
         lines:
-          - hostname {{ device_hostname }}
+          - hostname {{ inventory_hostname }}
 
     - name: Set login banner
       ios_config:
@@ -53,30 +53,30 @@
   hosts: SW1
   gather_facts: false
   tasks:
-    - name: Set G0/1 description
+    - name: Set G1/0/1 description
       ios_config:
-        parents: interface GigabitEthernet0/1
+        parents: interface GigabitEthernet1/0/1
         lines:
           - no shutdown
           - description Connection to R1
 
-    - name: Set G0/2 description
+    - name: Set G1/0/2 description
       ios_config:
-        parents: interface GigabitEthernet0/2
+        parents: interface GigabitEthernet1/0/2
         lines:
           - no shutdown
           - description Connection to R2
 
-    - name: Set G0/3 description
+    - name: Set G1/0/3 description
       ios_config:
-        parents: interface GigabitEthernet0/3
+        parents: interface GigabitEthernet1/0/3
         lines:
           - no shutdown
           - description Access port
 
-    - name: Set G0/4 description
+    - name: Set G1/0/4 description
       ios_config:
-        parents: interface GigabitEthernet0/4
+        parents: interface GigabitEthernet1/0/4
         lines:
           - no shutdown
           - description Access port
