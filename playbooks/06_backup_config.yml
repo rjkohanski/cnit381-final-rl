@@ -2,8 +2,6 @@
 -name Backup configuration
   hosts: all
   gather_facts:false
-  collections:
-    - cisco.ios
   tasks:
     -name Show run and save to /backups directory
       ios_command:
