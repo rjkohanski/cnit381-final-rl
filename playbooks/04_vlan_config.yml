@@ -13,26 +13,34 @@
           - name Server
           - vlan 30
           - name Voice
+          - vlan 100
+          - name Management
 
     - name: Configure SVI for VLAN 10 (Data)
       ios_config:
         parents: interface Vlan 10
         lines:
-          - ip address 192.168.1.1 255.255.255.0
+          - ip address 192.168.10.1 255.255.255.0
           - no shutdown
 
     - name: Configure SVI for VLAN 20 (Server)
       ios_config:
         parents: interface Vlan20
         lines:
-          - ip address 192.168.2.1 255.255.255.0
+          - ip address 192.168.20.1 255.255.255.0
           - no shutdown
 
     - name: Configure SVI for VLAN 30 (Voice)
       ios_config:
         parents: interface Vlan30
         lines:
-          - ip address 192.168.3.1 255.255.255.0
+          - ip address 192.168.30.1 255.255.255.0
+          - no shutdown
+    - name: Configure SVI for VLAN 100 (Management)
+      ios_config:
+        parents: interface Vlan100
+        lines:
+          - ip address 192.168.100.102 255.255.255.0
           - no shutdown
 
     - name: Apply data and voice VLANs to G1/0/3
