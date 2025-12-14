@@ -3,9 +3,6 @@
   hosts: routers
   gather_facts: false
 
-  collections:
-    - cisco.ios
-
   vars:
     router_ids:
       R1: 1
