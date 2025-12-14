@@ -13,4 +13,6 @@
 
     - name: Display connectivity result
       debug:
-        msg: "Device {{ inventory_hostname }} is reachable. Output: {{ result.stdout[0] }}"
+        msg: >
+          Device {{ inventory_hostname }} is reachable. Output: {{ result.stdout[0] }}
+      when: result is defined and result.stdout is defined
