@@ -85,6 +85,14 @@
           - switchport trunk allowed vlan 10,20,30,100
           - no shutdown
 
+    - name: Configure Ansible interface G1/0/24
+      ios_config:
+        parents: interface GigabitEthernet1/0/24
+        lines:
+          - switchport mode access
+          - switchport access vlan 100
+          - no shutdown
+
     - name: VLAN verification
       ios_command:
         commands:
