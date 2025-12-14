@@ -2,6 +2,8 @@
 -name VLAN configuration
   hosts: SW1
   gather_facts:false
+  collections:
+    - cisco.ios
   tasks:
     -name Create data VLAN
       ios_config:
@@ -30,15 +32,6 @@
           -no shutdown
           -ip address 192.168.3.1 255.255.255.0
 
-    -name Apply data and voice VLAN to g0/2
-      ios_config:
-        lines:
-          -switchport mode access
-          -switchport access vlan 10
-          -switchport voice vlan 30
-          -no shutdown
-        parents: GigabitEthernet0/2
-
     -name Apply data and voice VLAN to g0/3
       ios_config:
         lines:
@@ -47,6 +40,15 @@
           -switchport voice vlan 30
           -no shutdown
         parents: GigabitEthernet0/3
+
+    -name Apply data and voice VLAN to g0/4
+      ios_config:
+        lines:
+          -switchport mode access
+          -switchport access vlan 10
+          -switchport voice vlan 30
+          -no shutdown
+        parents: GigabitEthernet0/4
       
     -name Apply server VLAN to interface
       ios_config:
@@ -54,15 +56,23 @@
           -switchport mode access
           -switchport access vlan 20
           -no shutdown
-        parents: GigabitEthernet0/4
+        parents: GigabitEthernet0/5
     
-    -name Create trunk interface
+    -name Create trunk interface G0/1
       ios_config:
         lines:
           -switchport mode trunk
           -switchport trunk allowed vlan 10,20,30,100
           -no shutdown
         parents: GigabitEthernet0/1
+
+    -name Create trunk interface G0/2
+      ios_config:
+        lines:
+          -switchport mode trunk
+          -switchport trunk allowed vlan 10,20,30,100
+          -no shutdown
+        parents: GigabitEthernet0/2
     
     -name VLAN verification
       ios_command:
