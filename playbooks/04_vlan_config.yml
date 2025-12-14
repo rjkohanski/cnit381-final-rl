@@ -1,82 +1,89 @@
 ---
--name VLAN configuration
-  hosts: SW1
+- name: VLAN Configuration
+  hosts: switches
   gather_facts: false
+
   tasks:
-    -name Create data VLAN
+    - name: Create VLANs
       ios_config:
         lines:
-          -vlan 10
-          -name Data 
-          -int vlan 10
-          -no shutdown
-          -ip address 192.168.1.1 255.255.255.0
-    
-    -name Create server VLAN
-      ios_config:
-        lines:
-          -vlan 20
-          -name Data 
-          -int vlan 20
-          -no shutdown
-          -ip address 192.168.2.1 255.255.255.0
+          - vlan 10
+          - name Data
+          - vlan 20
+          - name Server
+          - vlan 30
+          - name Voice
 
-    -name Create voice VLAN
+    - name: Configure SVI for VLAN 10 (Data)
       ios_config:
+        parents: interface Vlan10
         lines:
-          -vlan 30
-          -name Data 
-          -int vlan 30
-          -no shutdown
-          -ip address 192.168.3.1 255.255.255.0
+          - ip address 192.168.1.1 255.255.255.0
+          - no shutdown
 
-    -name Apply data and voice VLAN to g0/3
+    - name: Configure SVI for VLAN 20 (Server)
       ios_config:
+        parents: interface Vlan20
         lines:
-          -switchport mode access
-          -switchport access vlan 10
-          -switchport voice vlan 30
-          -no shutdown
-        parents: GigabitEthernet0/3
+          - ip address 192.168.2.1 255.255.255.0
+          - no shutdown
 
-    -name Apply data and voice VLAN to g0/4
+    - name: Configure SVI for VLAN 30 (Voice)
       ios_config:
+        parents: interface Vlan30
         lines:
-          -switchport mode access
-          -switchport access vlan 10
-          -switchport voice vlan 30
-          -no shutdown
-        parents: GigabitEthernet0/4
-      
-    -name Apply server VLAN to interface
-      ios_config:
-        lines:
-          -switchport mode access
-          -switchport access vlan 20
-          -no shutdown
-        parents: GigabitEthernet0/5
-    
-    -name Create trunk interface G0/1
-      ios_config:
-        lines:
-          -switchport mode trunk
-          -switchport trunk allowed vlan 10,20,30,100
-          -no shutdown
-        parents: GigabitEthernet0/1
+          - ip address 192.168.3.1 255.255.255.0
+          - no shutdown
 
-    -name Create trunk interface G0/2
+    - name: Apply data and voice VLANs to G0/3
       ios_config:
+        parents: interface GigabitEthernet0/3
         lines:
-          -switchport mode trunk
-          -switchport trunk allowed vlan 10,20,30,100
-          -no shutdown
-        parents: GigabitEthernet0/2
-    
-    -name VLAN verification
+          - switchport mode access
+          - switchport access vlan 10
+          - switchport voice vlan 30
+          - no shutdown
+
+    - name: Apply data and voice VLANs to G0/4
+      ios_config:
+        parents: interface GigabitEthernet0/4
+        lines:
+          - switchport mode access
+          - switchport access vlan 10
+          - switchport voice vlan 30
+          - no shutdown
+
+    - name: Apply server VLAN to G0/5
+      ios_config:
+        parents: interface GigabitEthernet0/5
+        lines:
+          - switchport mode access
+          - switchport access vlan 20
+          - no shutdown
+
+    - name: Configure trunk interface G0/1
+      ios_config:
+        parents: interface GigabitEthernet0/1
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan 10,20,30,100
+          - no shutdown
+
+    - name: Configure trunk interface G0/2
+      ios_config:
+        parents: interface GigabitEthernet0/2
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan 10,20,30,100
+          - no shutdown
+
+    - name: VLAN verification
       ios_command:
         commands:
-          -show vlan brief
-          -show ip interface brief
+          - show vlan brief
+          - show ip interface brief
       register: verification_output
+
+    - name: Display verification output
       debug:
         var: verification_output.stdout_lines
