@@ -4,12 +4,12 @@
   gather_facts: false
   tasks:
     - name: Set hostname
-      cisco.ios.ios_config:
+      ios_config:
         lines:
           - hostname {{ device_hostname }}
 
     - name: Set login banner
-      cisco.ios.ios_config:
+      ios_config:
         lines:
           - banner motd ^Do not access unless authorized!^
 
@@ -18,14 +18,14 @@
   gather_facts: false
   tasks:
     - name: Set G0/0/1 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/0/1
         lines:
           - no shutdown
           - description Connection to SW1
 
     - name: Set G0/0/0 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/0/0
         lines:
           - no shutdown
@@ -36,14 +36,14 @@
   gather_facts: false
   tasks:
     - name: Set G0/0/0 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/0/0
         lines:
           - no shutdown
           - description Connection to R1
 
     - name: Set G0/0/1 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/0/1
         lines:
           - no shutdown
@@ -54,28 +54,28 @@
   gather_facts: false
   tasks:
     - name: Set G0/1 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/1
         lines:
           - no shutdown
           - description Connection to R1
 
     - name: Set G0/2 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/2
         lines:
           - no shutdown
           - description Connection to R2
 
     - name: Set G0/3 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/3
         lines:
           - no shutdown
           - description Access port
 
     - name: Set G0/4 description
-      cisco.ios.ios_config:
+      ios_config:
         parents: interface GigabitEthernet0/4
         lines:
           - no shutdown
