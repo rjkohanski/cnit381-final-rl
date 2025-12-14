@@ -1,7 +1,7 @@
 ---
 -name Hostname and banner configuration
   hosts: all
-  gather_facts:false
+  gather_facts: false
   tasks:
     -name: Set hostname
      ios_config:
@@ -69,3 +69,9 @@
           -no shutdown
           -description Access port
         parents: GigabitEthernet0/3
+    -name: Set G0/4 description
+      ios_config:
+        lines:
+          -no shutdown
+          -description Access port
+        parents: GigabitEthernet0/4
