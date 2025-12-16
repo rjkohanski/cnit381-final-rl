@@ -19,6 +19,12 @@ We have utilized Ansible to fully automate the configuration and management of a
 
 * ```06_backup_config.yml:``` This playbook executes a connectivity check and then captures the running configuration of all network devices for backup purposes.
 
+> [!NOTE]  
+> This is the topology in use for the final project. 
+
+<img src="https://github.com/rjkohanski/cnit381-final-rl/blob/main/assets/381FinalTopo.png?raw=true" alt="Description" style="padding: 10px; padding-left: 10px; width: 80%;">
+
+
 ### Repository File Structure
 
 * [playbooks/]()
