@@ -1,0 +1,204 @@
+Building configuration...
+
+
+Current configuration : 4245 bytes
+!
+! Last configuration change at 19:42:44 UTC Tue Dec 16 2025 by cisco
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered 16384
+enable secret 5 $1$8UX/$nolpi5Tw5KNCRSg4lfkOd/
+!
+no aaa new-model
+!
+no ip domain lookup
+ip domain name CCNA.lab
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+crypto pki trustpoint TP-self-signed-738943913
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-738943913
+ revocation-check none
+ rsakeypair TP-self-signed-738943913
+!
+!
+crypto pki certificate chain TP-self-signed-738943913
+ certificate self-signed 01
+  3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 37333839 34333931 33301E17 0D323531 32313331 38343635 
+  365A170D 33303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3733 38393433 
+  39313330 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02 
+  82010100 B8B450B9 C4B01E65 166C34AF 9775A0DA 4B6BB2C3 DCA9D87E 6BB83829 
+  7570A1A1 90210E85 4940FC0F 18C33572 0883E4BB FDA46B6C D0E235C7 C2F91889 
+  2E56BC94 2985EE12 726A0645 86E1008F C28EE868 C0513EAD BBAEB5B3 DAC1065D 
+  B094F445 796DBCDF 565F6013 B3CF5375 848DB159 7A71BFA6 55C8FBBA ECE5D026 
+  C37A6502 D2B3DBFD 26C977D4 4A38E80C ACC78D2C 6D668DD4 B776E4E8 422E969E 
+  DE698092 BC5D3B92 19D8D44D D337E4C7 CA51975C 052C9CF5 FB8D87CC 027A5030 
+  37EE9A4A 827815EC 7A00A697 AC1F1D7F 3C55CB1F 44AA08CF 3CCC44FF B733DE17 
+  ECCA530E 6ACF7782 2324C9D5 3C60CE7D 679827A5 2C1E1046 752BE94D AE3D9EF9 
+  82C61D6B 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 
+  0603551D 23041830 1680147D 9339BE17 A711B866 EED2A1E0 6D9D2668 81CBA430 
+  1D060355 1D0E0416 04147D93 39BE17A7 11B866EE D2A1E06D 9D266881 CBA4300D 
+  06092A86 4886F70D 01010505 00038201 010087E1 51E94BB8 CC1CB5DC 9FF0223D 
+  D6298D20 E3AA83D5 1E8370F6 1D2CBA0A 50FBA233 0EF979FE D6E9C083 0F7DBCBE 
+  52C49829 436F152F EB838830 3ADD2043 E41CA1EC 9BF0FB3F 5C00FA13 3C5251CC 
+  5112B9C9 0D1CC9EE 8C27BC94 2BDAD54E 4C7C2847 3F9A647C A51E5721 9BAA16F1 
+  D7566269 DC3C5A27 AFF61C67 88017C9F 0BFBA2E0 45295A60 14F42356 2E9E8A9F 
+  5FFE82AC A4E4C793 CCFA7810 4A35EE00 965FCAF2 584DAC7B DF4146B3 D76F7358 
+  F79C85EE 30ABAEF0 2B4F25C8 10238539 27335388 3A5784A6 FD804793 5ADFD24A 
+  E6C805D3 928734DC D178C8C2 497AAEE0 421B5009 FE5D96B3 3A1AEF62 5A5E1525 
+  E574CA9A 3BCD2FFB 3ACCDF6A F38C7C4E 6BCF
+  	quit
+!
+!
+license udi pid ISR4331/K9 sn FLM24050AB7
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+username cisco password 0 cisco123!
+!
+redundancy
+ mode none
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback1
+ ip address 10.1.1.1 255.255.255.255
+!
+interface Loopback2
+ ip address 10.1.2.1 255.255.255.255
+!
+interface Loopback3
+ ip address 10.1.3.1 255.255.255.255
+!
+interface GigabitEthernet0/0/0
+ description Connection to SW1
+ ip address 192.168.100.100 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface Serial0/1/0
+!
+interface Serial0/1/1
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ shutdown
+ negotiation auto
+!
+!
+router eigrp 100
+ network 0.0.0.0
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip tftp source-interface GigabitEthernet0
+!
+!
+!
+!
+!
+!
+control-plane
+!
+banner motd ^CDo not access unless authorized! This is very serious!^C
+!
+line con 0
+ transport input none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+ntp server time.google.com
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent notify
+!
+!
+end
