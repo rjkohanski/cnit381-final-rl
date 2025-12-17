@@ -4,6 +4,14 @@
   gather_facts: false
 
   tasks:
+    - name: Ensure backups directory exists on control node
+      ansible.builtin.file:
+        path: backups
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+      run_once: true
+
     - name: Show running-config
       ios_command:
         commands:
