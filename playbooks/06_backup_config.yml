@@ -5,7 +5,7 @@
 
   tasks:
     - name: Ensure backups directory exists on control node
-      ansible.builtin.file:
+      file:
         path: backups
         state: directory
         mode: '0755'
