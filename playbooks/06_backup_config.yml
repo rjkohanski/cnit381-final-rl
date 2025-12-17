@@ -3,9 +3,6 @@
   hosts: all
   gather_facts: false
 
-  collections:
-    - cisco.ios
-
   tasks:
     - name: Show running-config
       ios_command:
