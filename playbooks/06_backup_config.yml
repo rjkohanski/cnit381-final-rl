@@ -1,17 +1,23 @@
 ---
--name Backup configuration
+- name: Backup configuration
   hosts: all
-  gather_facts:false
+  gather_facts: false
+
+  collections:
+    - cisco.ios
+
   tasks:
-    -name Show run and save to /backups directory
+    - name: Show running-config
       ios_command:
         commands:
-          -show running-config
+          - show running-config
       register: config
+
+    - name: Save running-config to backups directory
       copy:
         content: "{{ config.stdout[0] }}"
         dest: "backups/show_run_{{ device_hostname }}.txt"
-    
-    -name success message
+
+    - name: Success message
       debug:
         msg: "Successfully copied {{ device_hostname }} running-config to /backups directory"
