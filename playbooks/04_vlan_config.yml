@@ -36,9 +36,9 @@
         lines:
           - ip address 192.168.30.1 255.255.255.0
           - no shutdown
-    - name: Configure SVI for VLAN 100 (Management)
+    - name: Configure SVI for VLAN 1 (Management)
       ios_config:
-        parents: interface Vlan100
+        parents: interface Vlan1
         lines:
           - ip address 192.168.100.102 255.255.255.0
           - no shutdown
@@ -74,7 +74,7 @@
         parents: interface GigabitEthernet1/0/1
         lines:
           - switchport mode trunk
-          - switchport trunk allowed vlan 10,20,30,100
+          - switchport trunk allowed vlan 10,20,30,1
           - no shutdown
 
     - name: Configure trunk interface G1/0/2
@@ -82,7 +82,7 @@
         parents: interface GigabitEthernet1/0/2
         lines:
           - switchport mode trunk
-          - switchport trunk allowed vlan 10,20,30,100
+          - switchport trunk allowed vlan 10,20,30,1
           - no shutdown
 
     - name: Configure Ansible interface G1/0/24
@@ -90,7 +90,7 @@
         parents: interface GigabitEthernet1/0/24
         lines:
           - switchport mode access
-          - switchport access vlan 100
+          - switchport access vlan 1
           - no shutdown
 
     - name: VLAN verification
