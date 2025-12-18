@@ -12,7 +12,7 @@
           - name Server
           - vlan 30
           - name Voice
-          - vlan 100
+          - vlan 1
           - name Management
 
     - name: Configure SVI for VLAN 10 (Data)
