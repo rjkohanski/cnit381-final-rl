@@ -22,6 +22,7 @@
         parents: interface GigabitEthernet0/0/0
         lines:
           - no shutdown
+          - encapsulation dot1q 1
           - description Connection to SW1
 
 - name: Set R2 interface descriptions
@@ -33,6 +34,7 @@
         parents: interface GigabitEthernet0/0/0
         lines:
           - no shutdown
+          - encapsulation dot1q 1
           - description Connection to SW1
 
 - name: Set SW1 interface descriptions
